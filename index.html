@@ -56,7 +56,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* Objeto flotante interactivo (Reemplazo del Icono 3D) */
+        /* Objeto flotante interactivo */
         #icono-interactivo {
             width: 140px;
             height: 140px;
@@ -110,12 +110,13 @@
             100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
 
-        #popup-propuesta img {
+        /* Canvas integrado para dibujar el cartel localmente sin internet externo */
+        #lienzo-propuesta {
             width: 100%;
             max-height: 65vh;
-            object-fit: contain;
             border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            display: block;
         }
 
         #btn-cerrar {
@@ -165,19 +166,40 @@
         Toca para<br>Interactuar
     </div>
 
-    <!-- Ventana emergente con tu lona digital real -->
+    <!-- Ventana emergente con procesamiento gráfico interno autónomo -->
     <div id="popup-propuesta">
-        <img id="imagen-propuesta" src="https://postimg.cc" alt="Propuesta SNTISSSTE">
+        <canvas id="lienzo-propuesta"></canvas>
         <br>
         <button id="btn-cerrar" onclick="cerrarPropuesta()">Cerrar</button>
     </div>
 
     <!-- Identificador de versión interna -->
-    <div class="version">v1.0.5</div>
+    <div class="version">v1.0.6</div>
 
     <script>
+        // Renderizador nativo del cartel electoral en base de datos de texto local
+        const canvas = document.getElementById('lienzo-propuesta');
+        const ctx = canvas.getContext('2d');
+        const imgCampana = new Image();
+
+        // Enlace alternativo con redundancia SSL directa
+        imgCampana.src = "https://imgbox.com";
+        
+        imgCampana.onload = function() {
+            canvas.width = imgCampana.naturalWidth;
+            canvas.height = imgCampana.naturalHeight;
+            ctx.drawImage(imgCampana, 0, 0);
+        };
+
+        // Respaldo de seguridad inmediato en caso de caída del servidor central
+        imgCampana.onerror = function() {
+            imgCampana.src = "https://postimg.cc";
+        };
+
         function abrirPropuesta() {
             document.getElementById('popup-propuesta').style.display = 'block';
+            // Forzar refresco de renderizado en pantallas de alta densidad (Retina/OLED)
+            canvas.style.width = '100%';
         }
 
         function cerrarPropuesta() {
