@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Campaña Electoral AR - SNTISSSTE</title>
-    <!-- Librerías de Realidad Aumentada Web (A-Frame y AR.js) -->
-    <script src="https://aframe.io"></script>
+    <!-- Librerías estables de A-Frame y AR.js para Realidad Aumentada -->
+    <script src="https://cloudflare.com"></script>
     <script src="https://githack.com"></script>
     
     <style>
@@ -51,7 +51,8 @@
 </head>
 <body style="margin: 0; overflow: hidden;">
 
-<div style="position: fixed; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 5px; font-family: sans-serif; font-size: 12px; z-index: 99999;">v1.0.0</div>
+    <!-- Indicador de versión para control de cambios -->
+    <div style="position: fixed; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 5px; font-family: sans-serif; font-size: 12px; z-index: 99999;">v1.0.2</div>
 
     <!-- Ventana emergente con tu cartel electoral -->
     <div id="popup-propuesta">
@@ -63,9 +64,9 @@
     <!-- Escena de Realidad Aumentada basada en la cámara del usuario -->
     <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" cursor="rayOrigin: mouse">
         
-        <!-- Precarga del logotipo oficial con fondo transparente recortado de tu lona -->
+        <!-- Precarga del logotipo oficial con fondo transparente -->
         <a-assets>
-            <img id="logo-seccion" src="https://postimg.cc" crossorigin="anonymous">
+            <img id="logo-seccion" src="https://ibb.co" crossorigin="anonymous">
         </a-assets>
 
         <!-- Iluminación ambiental -->
@@ -83,9 +84,10 @@
                  class="clickable">
         </a-plane>
 
-        <!-- Lector de cámara del dispositivo móvil -->
+        <!-- Lector de cámara del dispositivo móvil CORRECTAMENTE CERRADO -->
         <a-camera raycaster="objects: .clickable">
-            <a-cursor color="#0056b3" scale="0.4 0.4 0.4" opacity="0.6"></a-camera>
+            <a-cursor color="#0056b3" scale="0.4 0.4 0.4" opacity="0.6"></a-cursor>
+        </a-camera>
 
     </a-scene>
 
