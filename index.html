@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Campaña Electoral AR - SNTISSSTE Sección IV</title>
-    <!-- Librerías de desarrollo WebAR (A-Frame y AR.js) -->
+    <title>Campaña Electoral AR - SNTISSSTE</title>
+    <!-- Librerías de Realidad Aumentada Web (A-Frame y AR.js) -->
     <script src="https://aframe.io"></script>
     <script src="https://githack.com"></script>
     
     <style>
-        /* Panel emergente que despliega el cartel informativo */
+        /* Estilos del contenedor emergente de la propuesta */
         #popup-propuesta {
             display: none;
             position: fixed;
@@ -51,26 +51,28 @@
 </head>
 <body style="margin: 0; overflow: hidden;">
 
-    <!-- Despliegue de tu propuesta al interactuar -->
+<div style="position: fixed; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 5px; font-family: sans-serif; font-size: 12px; z-index: 99999;">v1.0.0</div>
+
+    <!-- Ventana emergente con tu cartel electoral -->
     <div id="popup-propuesta">
         <img id="imagen-propuesta" src="https://postimg.cc" alt="Propuesta SNTISSSTE">
         <br>
         <button id="btn-cerrar" onclick="cerrarPropuesta()">Cerrar</button>
     </div>
 
-    <!-- Escena de Realidad Aumentada -->
+    <!-- Escena de Realidad Aumentada basada en la cámara del usuario -->
     <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" cursor="rayOrigin: mouse">
         
-        <!-- Precarga de recursos gráficos (Logotipo de la Sección IV) -->
+        <!-- Precarga del logotipo oficial con fondo transparente recortado de tu lona -->
         <a-assets>
             <img id="logo-seccion" src="https://postimg.cc" crossorigin="anonymous">
         </a-assets>
 
-        <!-- Configuración lumínica del entorno -->
+        <!-- Iluminación ambiental -->
         
 
-        <!-- LOGOTIPO FLOTANTE INTERACTIVO (Gira 360 grados de forma continua)
-             Ubicado a una distancia de 1.8 metros (z = -1.8) y visible por ambos lados (side: double) -->
+        <!-- LOGOTIPO FLOTANTE INTERACTIVO DE DOBLE CARA
+             Ubicado a 1.8 metros (z = -1.8) y con un giro continuo sobre su propio eje -->
         <a-plane id="avatar-campana" 
                  src="#logo-seccion" 
                  width="0.8" 
@@ -83,17 +85,17 @@
 
         <!-- Lector de cámara del dispositivo móvil -->
         <a-camera raycaster="objects: .clickable">
-            <a-cursor color="#0056b3" scale="0.4 0.4 0.4" opacity="0.6"></a-cursor>
-        </a-camera>
+            <a-cursor color="#0056b3" scale="0.4 0.4 0.4" opacity="0.6"></a-camera>
 
     </a-scene>
 
     <script>
-        // Control de eventos interactivos sobre el logotipo
+        // Abre el anuncio al tocar el logotipo flotante
         document.getElementById('avatar-campana').addEventListener('click', function () {
             document.getElementById('popup-propuesta').style.display = 'block';
         });
 
+        // Cierra la propuesta electoral
         function cerrarPropuesta() {
             document.getElementById('popup-propuesta').style.display = 'none';
         }
