@@ -23,9 +23,9 @@
         /* Ondas del radar de campaña */
         .radar-pulse {
             position: absolute;
-            width: 280px;
-            height: 280px;
-            border: 2px solid rgba(0, 168, 255, 0.3);
+            width: 320px;
+            height: 320px;
+            border: 2px solid rgba(0, 168, 255, 0.25);
             border-radius: 50%;
             animation: pulse 4s infinite linear;
             pointer-events: none;
@@ -35,58 +35,64 @@
         .pulse3 { animation-delay: 2.6s; }
 
         @keyframes pulse {
-            0% { transform: scale(0.5); opacity: 1; }
-            100% { transform: scale(1.8); opacity: 0; }
+            0% { transform: scale(0.4); opacity: 1; }
+            100% { transform: scale(1.6); opacity: 0; }
         }
 
-        /* Encabezado con Logotipo local flotante animado */
+        /* Encabezado con Logotipo flotante animado */
         #cabecera-logo {
             position: fixed;
-            top: 20px;
+            top: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
             z-index: 10;
             pointer-events: none;
             animation: floatLogo 3.5s ease-in-out infinite;
+            width: 90%;
+            max-width: 450px;
         }
 
-        /* ACTUALIZADO: Logotipo el doble de grande (150px) y sombra reforzada */
         #cabecera-logo img {
-            width: 150px;
+            width: 130px;
             height: auto;
             filter: drop-shadow(0px 6px 16px rgba(0, 168, 255, 0.6));
         }
 
-        #cabecera-logo span {
-            color: white;
-            font-size: 14px;
-            font-weight: bold;
-            margin-top: 10px;
-            letter-spacing: 2px;
-            background: rgba(0, 86, 179, 0.85);
-            padding: 5px 20px;
-            border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            text-transform: uppercase;
+        /* NUEVO: Leyenda de campaña solicitada entre el logo y los botones */
+        #leyenda-campana {
+            color: #ffffff;
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.5;
+            margin-top: 12px;
+            padding: 10px 15px;
+            background: rgba(0, 20, 38, 0.6);
+            border-radius: 12px;
+            border-left: 3px solid #00a8ff;
+            border-right: 3px solid #00a8ff;
+            font-weight: 500;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            box-sizing: border-box;
+            width: 100%;
         }
 
         @keyframes floatLogo {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-6px); }
             100% { transform: translateY(0px); }
         }
 
-        /* Contenedor horizontal para organizar las 3 esferas */
-        .contenedor-esferas {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
+        /* ACTUALIZADO: Contenedor en cuadrícula para formar el plano cartesiano (Cruz) */
+        .grid-cartesiano {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 15px;
             z-index: 5;
-            width: 90%;
-            max-width: 500px;
-            margin-top: 120px; /* Margen superior extra para evitar que choque con el logo grande */
+            margin-top: 160px; /* Espacio para que el bloque de arriba no tape los botones */
+            justify-content: center;
+            align-content: center;
         }
 
         /* Estilo base para los botones flotantes interactivos */
@@ -113,32 +119,44 @@
             transform: scale(0.9);
         }
 
-        /* Tres tonalidades exclusivas de azul con efecto metálico */
-        #esfera1 {
+        /* Posicionamiento y colores de las 4 esferas en el plano cartesiano */
+        #esfera1 { /* NORTE */
+            grid-column: 2;
+            grid-row: 1;
             background: linear-gradient(135deg, #0056b3, #002b66);
-            box-shadow: 0 8px 25px rgba(0, 86, 179, 0.6), inset 0 3px 6px rgba(255,255,255,0.3);
-            animation: floatEsfera 4s ease-in-out infinite;
+            box-shadow: 0 8px 22px rgba(0, 86, 179, 0.6), inset 0 3px 6px rgba(255,255,255,0.3);
+            animation: floatNorte 4s ease-in-out infinite;
         }
 
-        #esfera2 {
+        #esfera2 { /* ESTE */
+            grid-column: 3;
+            grid-row: 2;
             background: linear-gradient(135deg, #007bff, #0056b3);
-            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.6), inset 0 3px 6px rgba(255,255,255,0.3);
-            animation: floatEsfera 4.5s ease-in-out infinite;
-            animation-delay: 0.5s;
+            box-shadow: 0 8px 22px rgba(0, 123, 255, 0.6), inset 0 3px 6px rgba(255,255,255,0.3);
+            animation: floatEste 4.5s ease-in-out infinite;
         }
 
-        #esfera3 {
+        #esfera3 { /* SUR */
+            grid-column: 2;
+            grid-row: 3;
             background: linear-gradient(135deg, #00a8ff, #007bb5);
-            box-shadow: 0 8px 25px rgba(0, 168, 255, 0.6), inset 0 3px 6px rgba(255,255,255,0.3);
-            animation: floatEsfera 5s ease-in-out infinite;
-            animation-delay: 1s;
+            box-shadow: 0 8px 22px rgba(0, 168, 255, 0.6), inset 0 3px 6px rgba(255,255,255,0.3);
+            animation: floatSur 4s ease-in-out infinite;
         }
 
-        @keyframes floatEsfera {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0px); }
+        #esfera4 { /* OESTE (Nueva Esfera en Azul Oscuro Imperial) */
+            grid-column: 1;
+            grid-row: 2;
+            background: linear-gradient(135deg, #001f4d, #004080);
+            box-shadow: 0 8px 22px rgba(0, 31, 77, 0.7), inset 0 3px 6px rgba(255,255,255,0.3);
+            animation: floatOeste 4.5s ease-in-out infinite;
         }
+
+        /* Animaciones cruzadas independientes para dar un efecto flotante dinámico */
+        @keyframes floatNorte { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        @keyframes floatEste { 0%, 100% { transform: translateX(0px); } 50% { transform: translateX(8px); } }
+        @keyframes floatSur { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(10px); } }
+        @keyframes floatOeste { 0%, 100% { transform: translateX(0px); } 50% { transform: translateX(-8px); } }
 
         /* Ventana emergente general (Pop-up) */
         #popup-propuesta {
@@ -202,10 +220,13 @@
 </head>
 <body>
 
-    <!-- Cabecera Institucional Flotante Localizada (.jpeg) -->
+    <!-- Cabecera Institucional Flotante -->
     <div id="cabecera-logo">
         <img src="logo.jpeg" alt="Logo SNTISSSTE">
-        <span>Sección IV</span>
+        <!-- LEYENDA ADICIONAL INTEGRADA -->
+        <div id="leyenda-campana">
+            "El cambio se ve reflejado en la imagen que proyectamos. Interactúa con la planilla azul dando clic en alguno de los círculos en movimiento"
+        </div>
     </div>
 
     <!-- Ondas de radar de fondo -->
@@ -213,11 +234,12 @@
     <div class="radar-pulse pulse2"></div>
     <div class="radar-pulse pulse3"></div>
 
-    <!-- Panel de esferas interactivas agrupadas -->
-    <div class="contenedor-esferas">
-        <div id="esfera1" class="esfera-interactiva" onclick="abrirPropuesta('propuesta.jpeg')">Proyecto<br>En Marcha</div>
-        <div id="esfera2" class="esfera-interactiva" onclick="abrirPropuesta('propuesta2.jpeg')">Nuestro<br>Candidato</div>
-        <div id="esfera3" class="esfera-interactiva" onclick="abrirPropuesta('propuesta3.jpeg')">Recuerda<br>En las Elecciones</div>
+    <!-- ACTUALIZADO: Plano cartesiano en forma de cruz (Norte, Sur, Este, Oeste) -->
+    <div class="grid-cartesiano">
+        <div id="esfera1" class="esfera-interactiva" onclick="abrirPropuesta('propuesta2.jpeg')">Nuestro<br>Candidato</div>
+        <div id="esfera2" class="esfera-interactiva" onclick="abrirPropuesta('propuesta.jpeg')">Proyecto<br>En Marcha</div>
+        <div id="esfera3" class="esfera-interactiva" onclick="abrirPropuesta('propuesta4.jpeg')">Secretario<br>General Adjunto</div>
+        <div id="esfera4" class="esfera-interactiva" onclick="abrirPropuesta('propuesta3.jpeg')">Recuerda<br>En las Elecciones</div>
     </div>
 
     <!-- Ventana emergente inteligente -->
@@ -227,11 +249,10 @@
         <button id="btn-cerrar" onclick="cerrarPropuesta()">Cerrar</button>
     </div>
 
-    <!-- Identificador de versión definitiva de diseño -->
-    <div class="version">v1.1.1</div>
+    <!-- Identificador de versión estructural -->
+    <div class="version">v1.2.0</div>
 
     <script>
-        // Función inteligente para inyectar y abrir la lona seleccionada
         function abrirPropuesta(nombreImagen) {
             const popup = document.getElementById('popup-propuesta');
             const img = document.getElementById('imagen-dinamica');
