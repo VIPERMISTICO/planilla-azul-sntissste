@@ -39,7 +39,7 @@
             100% { transform: scale(1.8); opacity: 0; }
         }
 
-        /* Encabezado con Logotipo flotante animado */
+        /* Encabezado con Logotipo local flotante animado */
         #cabecera-logo {
             position: fixed;
             top: 25px;
@@ -111,23 +111,23 @@
             transform: scale(0.9);
         }
 
-        /* Colores y animaciones personalizadas para cada esfera */
+        /* ACTUALIZADO: Tres tonalidades exclusivas de azul con efecto metálico */
         #esfera1 {
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.5), inset 0 3px 6px rgba(255,255,255,0.3);
+            background: linear-gradient(135deg, #0056b3, #002b66);
+            box-shadow: 0 8px 25px rgba(0, 86, 179, 0.6), inset 0 3px 6px rgba(255,255,255,0.3);
             animation: floatEsfera 4s ease-in-out infinite;
         }
 
         #esfera2 {
-            background: linear-gradient(135deg, #00a8ff, #007bb5);
-            box-shadow: 0 8px 25px rgba(0, 168, 255, 0.5), inset 0 3px 6px rgba(255,255,255,0.3);
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.6), inset 0 3px 6px rgba(255,255,255,0.3);
             animation: floatEsfera 4.5s ease-in-out infinite;
             animation-delay: 0.5s;
         }
 
         #esfera3 {
-            background: linear-gradient(135deg, #20bf6b, #10ac84);
-            box-shadow: 0 8px 25px rgba(32, 191, 107, 0.5), inset 0 3px 6px rgba(255,255,255,0.3);
+            background: linear-gradient(135deg, #00a8ff, #007bb5);
+            box-shadow: 0 8px 25px rgba(0, 168, 255, 0.6), inset 0 3px 6px rgba(255,255,255,0.3);
             animation: floatEsfera 5s ease-in-out infinite;
             animation-delay: 1s;
         }
@@ -200,9 +200,9 @@
 </head>
 <body>
 
-    <!-- Cabecera Institucional Flotante -->
+    <!-- Cabecera Institucional Flotante Localizada (.jpeg) -->
     <div id="cabecera-logo">
-        <img src="https://ibb.co" alt="Logo SNTISSSTE">
+        <img src="logo.jpeg" alt="Logo SNTISSSTE">
         <span>Sección IV</span>
     </div>
 
@@ -213,28 +213,25 @@
 
     <!-- Panel de esferas interactivas agrupadas -->
     <div class="contenedor-esferas">
-        <div id="esfera1" class="esfera-interactiva" onclick="abrirPropuesta('propuesta.jpeg')">Propuesta<br>01</div>
-        <div id="esfera2" class="esfera-interactiva" onclick="abrirPropuesta('propuesta2.jpeg')">Propuesta<br>02</div>
-        <div id="esfera3" class="esfera-interactiva" onclick="abrirPropuesta('propuesta3.jpeg')">Propuesta<br>03</div>
+        <div id="esfera1" class="esfera-interactiva" onclick="abrirPropuesta('propuesta.jpeg')">Proyecto<br>En Marcha</div>
+        <div id="esfera2" class="esfera-interactiva" onclick="abrirPropuesta('propuesta2.jpeg')">Nuestro<br>Candidato</div>
+        <div id="esfera3" class="esfera-interactiva" onclick="abrirPropuesta('propuesta3.jpeg')">Recuerda<br>En las Elecciones</div>
     </div>
 
-    <!-- Ventana emergente inteligente (Cambia dinámicamente de imagen) -->
+    <!-- Ventana emergente inteligente -->
     <div id="popup-propuesta">
         <img id="imagen-dinamica" src="" alt="Propuesta de Campaña">
         <br>
         <button id="btn-cerrar" onclick="cerrarPropuesta()">Cerrar</button>
     </div>
 
-    <!-- Identificador de versión interna -->
-    <div class="version">v1.1.0</div>
+    <!-- Identificador de versión definitiva de diseño -->
+    <div class="version">v1.1.3</div>
 
     <script>
-        // Función inteligente para inyectar y abrir la lona seleccionada
         function abrirPropuesta(nombreImagen) {
             const popup = document.getElementById('popup-propuesta');
             const img = document.getElementById('imagen-dinamica');
-            
-            // Asigna la ruta local correspondiente antes de mostrar la ventana
             img.src = nombreImagen;
             popup.style.display = 'block';
         }
