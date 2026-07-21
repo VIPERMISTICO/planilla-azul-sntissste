@@ -42,7 +42,7 @@
         /* Encabezado con Logotipo local flotante animado */
         #cabecera-logo {
             position: fixed;
-            top: 25px;
+            top: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -51,20 +51,21 @@
             animation: floatLogo 3.5s ease-in-out infinite;
         }
 
+        /* ACTUALIZADO: Logotipo el doble de grande (150px) y sombra reforzada */
         #cabecera-logo img {
-            width: 75px;
+            width: 150px;
             height: auto;
-            filter: drop-shadow(0px 4px 12px rgba(0, 168, 255, 0.5));
+            filter: drop-shadow(0px 6px 16px rgba(0, 168, 255, 0.6));
         }
 
         #cabecera-logo span {
             color: white;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: bold;
-            margin-top: 8px;
+            margin-top: 10px;
             letter-spacing: 2px;
-            background: rgba(0, 86, 179, 0.8);
-            padding: 4px 15px;
+            background: rgba(0, 86, 179, 0.85);
+            padding: 5px 20px;
             border-radius: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             text-transform: uppercase;
@@ -85,6 +86,7 @@
             z-index: 5;
             width: 90%;
             max-width: 500px;
+            margin-top: 120px; /* Margen superior extra para evitar que choque con el logo grande */
         }
 
         /* Estilo base para los botones flotantes interactivos */
@@ -111,7 +113,7 @@
             transform: scale(0.9);
         }
 
-        /* ACTUALIZADO: Tres tonalidades exclusivas de azul con efecto metálico */
+        /* Tres tonalidades exclusivas de azul con efecto metálico */
         #esfera1 {
             background: linear-gradient(135deg, #0056b3, #002b66);
             box-shadow: 0 8px 25px rgba(0, 86, 179, 0.6), inset 0 3px 6px rgba(255,255,255,0.3);
@@ -213,9 +215,9 @@
 
     <!-- Panel de esferas interactivas agrupadas -->
     <div class="contenedor-esferas">
-        <div id="esfera1" class="esfera-interactiva" onclick="abrirPropuesta('propuesta.jpeg')">Proyecto<br>En Marcha</div>
-        <div id="esfera2" class="esfera-interactiva" onclick="abrirPropuesta('propuesta2.jpeg')">Nuestro<br>Candidato</div>
-        <div id="esfera3" class="esfera-interactiva" onclick="abrirPropuesta('propuesta3.jpeg')">Recuerda<br>En las Elecciones</div>
+        <div id="esfera1" class="esfera-interactiva" onclick="abrirPropuesta('propuesta.jpeg')">Propuesta<br>01</div>
+        <div id="esfera2" class="esfera-interactiva" onclick="abrirPropuesta('propuesta2.jpeg')">Propuesta<br>02</div>
+        <div id="esfera3" class="esfera-interactiva" onclick="abrirPropuesta('propuesta3.jpeg')">Propuesta<br>03</div>
     </div>
 
     <!-- Ventana emergente inteligente -->
@@ -226,9 +228,10 @@
     </div>
 
     <!-- Identificador de versión definitiva de diseño -->
-    <div class="version">v1.1.3</div>
+    <div class="version">v1.1.4</div>
 
     <script>
+        // Función inteligente para inyectar y abrir la lona seleccionada
         function abrirPropuesta(nombreImagen) {
             const popup = document.getElementById('popup-propuesta');
             const img = document.getElementById('imagen-dinamica');
